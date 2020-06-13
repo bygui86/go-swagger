@@ -3,7 +3,11 @@
 
 Sample project to test Swagger-OpenAPI integration in Golang
 
-`WORK IN PROGRESS`
+## TODOs
+
+- [x] go-swagger example
+- [x] swaggo example
+- [ ] swagger2markdown example
 
 ---
 
