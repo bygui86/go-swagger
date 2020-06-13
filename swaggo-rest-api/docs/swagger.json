@@ -1,0 +1,92 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Here we provide a detailed overview of how to use BlogPost API.",
+        "title": "BlogPost API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "Matteo Baiguini",
+            "email": "bygui86@github.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/blogPosts": {
+            "get": {
+                "description": "Return all blog posts in memory",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "blogPosts"
+                ],
+                "summary": "Get all blog posts",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/blogpost.blogPost"
+                        }
+                    }
+                }
+            }
+        },
+        "/blogPosts/{id}": {
+            "get": {
+                "description": "If a blog posts with specified ID exists, it will be returned else nothing will be returned",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "blogPosts"
+                ],
+                "summary": "Get a specific blog post given the ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID of the blog post to look for",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/blogpost.blogPost"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "blogpost.blogPost": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

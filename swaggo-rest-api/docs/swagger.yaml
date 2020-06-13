@@ -1,0 +1,61 @@
+basePath: /
+definitions:
+  blogpost.blogPost:
+    properties:
+      body:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: bygui86@github.com
+    name: Matteo Baiguini
+  description: Here we provide a detailed overview of how to use BlogPost API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: BlogPost API
+  version: 1.0.0
+paths:
+  /blogPosts:
+    get:
+      consumes:
+      - application/json
+      description: Return all blog posts in memory
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/blogpost.blogPost'
+      summary: Get all blog posts
+      tags:
+      - blogPosts
+  /blogPosts/{id}:
+    get:
+      consumes:
+      - application/json
+      description: If a blog posts with specified ID exists, it will be returned else nothing will be returned
+      parameters:
+      - description: ID of the blog post to look for
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/blogpost.blogPost'
+      summary: Get a specific blog post given the ID
+      tags:
+      - blogPosts
+swagger: "2.0"
