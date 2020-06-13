@@ -3,12 +3,6 @@
 
 Sample project to test Swagger-OpenAPI integration in Golang
 
-## TODOs
-
-- [x] go-swagger example
-- [x] swaggo example
-- [ ] swagger2markdown example
-
 ---
 
 ## Prerequisites
@@ -89,6 +83,28 @@ cd swaggo-rest-api && make start
 
     ```shell script
     make open-swagger-ui
+    ```
+
+### swagger2markup
+
+1. enter `swaggo-rest-api` or `go-swagger-rest-api`
+
+    ```shell script
+    cd swaggo-rest-api
+    
+    # or
+    
+    cd go-swagger-rest-api
+    ```
+
+2. generate Markdown documentation as file or folder
+
+    ```shell script
+    make generate-markdown-doc-file
+    
+    # or
+    
+    make generate-markdown-doc-folder
     ```
 
 ---

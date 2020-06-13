@@ -25,7 +25,7 @@ const (
 // @Tags blogPosts
 // @Accept json
 // @Produce json
-// @Success 200 {object} blogPost
+// @Success 200 {array} blogPost
 // @Router /blogPosts [get]
 func (s *Server) getBlogPosts(writer http.ResponseWriter, request *http.Request) {
 	requestStr := "GET BlogPosts request"

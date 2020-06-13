@@ -49,7 +49,10 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/blogpost.blogPost"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/blogpost.blogPost"
+                            }
                         }
                     }
                 }

@@ -1,0 +1,75 @@
+consumes:
+- application/json
+definitions:
+  blogPost:
+    description: |-
+      BlogPost
+      {
+      "id": "1",
+      "title": "sample title",
+      "body":  "sample body",
+      }
+    properties:
+      body:
+        type: string
+        x-go-name: Body
+      id:
+        type: string
+        x-go-name: ID
+      title:
+        type: string
+        x-go-name: Title
+    type: object
+    x-go-package: github.com/bygui86/go-swagger/go-swagger-rest-api/blogpost
+host: localhost:8080
+info:
+  contact:
+    email: bygui86@github.com
+    name: Matteo Baiguini
+  description: Here we provide a detailed overview of how to use BlogPost API.
+  title: BlogPost API
+  version: 1.0.0
+paths:
+  /blogPosts:
+    get:
+      description: Return all blog posts in memory
+      operationId: getBlogPosts
+      responses:
+        "200":
+          $ref: '#/responses/blogPostsRes'
+      summary: Get all blog posts
+      tags:
+      - blogPosts
+  /blogPosts/{id}:
+    get:
+      description: If a blog posts with specified ID exists, it will be returned else
+        nothing will be returned
+      operationId: getBlogPostByPath
+      parameters:
+      - description: id of the blog post
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/blogPostRes'
+      summary: Get a specific blog post given the ID
+      tags:
+      - blogPosts
+produces:
+- application/json
+responses:
+  blogPostRes:
+    description: BlogPost response payload
+    schema:
+      $ref: '#/definitions/blogPost'
+  blogPostsRes:
+    description: BlogPosts response payload
+    schema:
+      items:
+        $ref: '#/definitions/blogPost'
+      type: array
+schemes:
+- http
+swagger: "2.0"

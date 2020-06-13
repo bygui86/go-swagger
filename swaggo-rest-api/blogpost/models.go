@@ -21,7 +21,7 @@ type Server struct {
 	routes     []*serverRoute
 }
 
-// blogPost represents the model for an blog post
+// blogPost represents the model for a blog post
 type blogPost struct {
 	ID    string `json:"id"`
 	Title string `json:"title"`

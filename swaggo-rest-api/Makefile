@@ -17,7 +17,7 @@ export GO111MODULE=on
 ## application
 
 build :		## Start application
-	go build ./...
+	go build
 
 start :		## Start application
 	godotenv -f local.env go run main.go
@@ -30,6 +30,14 @@ open-swagger-ui :		## Open Swagger-UI
 
 get-swagger-json :		## Get Swagger JSON
 	open "http://localhost:8080/swagger-ui/doc.json"
+
+generate-markdown-doc-file : generate-swagger-doc		## Generate Markdown documentation from Swagger documentation
+	mkdir -p docs/md/
+	swagger2markup convert -i docs/swagger.yaml -f docs/md/swagger -c md-config.properties
+
+generate-markdown-doc-folder : generate-swagger-doc		## Generate Markdown documentation from Swagger documentation
+	mkdir -p docs/md/
+	swagger2markup convert -i docs/swagger.yaml -d docs/md/swagger -c md-config.properties
 
 ## helpers
 

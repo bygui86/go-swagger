@@ -33,7 +33,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/blogpost.blogPost'
+            items:
+              $ref: '#/definitions/blogpost.blogPost'
+            type: array
       summary: Get all blog posts
       tags:
       - blogPosts

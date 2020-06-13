@@ -37,7 +37,7 @@
     },
     "/blogPosts/{id}": {
       "get": {
-        "description": "If a blog posts with specified ID exists, it will be returned else nothing will be returned.",
+        "description": "If a blog posts with specified ID exists, it will be returned else nothing will be returned",
         "tags": [
           "blogPosts"
         ],
