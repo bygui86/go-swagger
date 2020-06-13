@@ -1,0 +1,584 @@
+{
+	"info": {
+		"_postman_id": "54d446e4-97ff-4791-b608-fc7c6a80c7fe",
+		"name": "GOLANG_SWAGGER",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "blog-posts",
+			"item": [
+				{
+					"name": "Get posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e6d3dac0-35cd-458a-8fdd-d36ca2dda2e6",
+								"exec": [
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/blogPosts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"blogPosts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "58b4b05e-4aad-44d7-b8bf-8416262a50cf",
+								"exec": [
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"if ( pm.response.to.have.status(201) ) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"id\", jsonData.id);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"custom post\",\n\t\"body\": \"this is a custom post\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/blogPosts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"blogPosts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get post by query",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0c780f38-ada7-4d10-bd33-0afbbd03dc58",
+								"exec": [
+									"",
+									"if ( !pm.globals.has('id') ) {",
+									"    pm.globals.set(\"id\", 1);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e03628f4-fe16-4804-9865-47cce397ce69",
+								"exec": [
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/blogPosts?id={{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"blogPosts"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get post by path",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d3531152-f0ef-4e95-976c-62d3eac42a9f",
+								"exec": [
+									"",
+									"if ( !pm.globals.has('id') ) {",
+									"    pm.globals.set(\"id\", 1);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ff849f7d-04d1-4ee1-9f6a-81073c1225d3",
+								"exec": [
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/blogPosts/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"blogPosts",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "13bdf242-1445-44ee-b274-685a60459dd7",
+								"exec": [
+									"",
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bc7e66c1-595f-463c-97b6-bbbff68548ee",
+								"exec": [
+									"",
+									"if ( !pm.globals.has('id') ) {",
+									"    pm.globals.set(\"id\", 1);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": {{id}},\n\t\"title\": \"EDITED custom post\",\n\t\"body\": \"this is a EDITED custom post\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/blogPosts/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"blogPosts",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete post",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "404115fa-d7c5-4b3e-ac69-38bb25a46631",
+								"exec": [
+									"",
+									"if ( !pm.globals.has('id') ) {",
+									"    pm.globals.set(\"id\", 1);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "4d374b1d-c6d0-49b3-9989-b9f76f8ee967",
+								"exec": [
+									"",
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});",
+									"",
+									"if ( pm.response.to.have.status(202) ) {",
+									"    pm.globals.unset(\"id\");",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/blogPosts/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"blogPosts",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "others",
+			"item": [
+				{
+					"name": "Get root",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3f8b2e34-cfc1-4e97-8aa0-e6de04bc1216",
+								"exec": [
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get routes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6d0d5428-7f83-45fd-a9b2-84cbca960043",
+								"exec": [
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/routes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"routes"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "go-swagger",
+			"item": [
+				{
+					"name": "Get swagger-ui",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/swagger-ui/index.html",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"swagger-ui",
+								"index.html"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get swagger json",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/swagger-ui/swagger.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"swagger-ui",
+								"swagger.json"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "84856404-1ea0-47cf-8a0a-0d3201b1d365",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4cfbcca4-9d6d-4911-84d8-a8edb632005f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "swaggo",
+			"item": [
+				{
+					"name": "Get swagger-ui",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/swagger-ui/index.html",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"swagger-ui",
+								"index.html"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get swagger json",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/swagger-ui/doc.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"swagger-ui",
+								"doc.json"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7d29c3a4-7c84-4774-aa72-5e8961d6f784",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce1fe939-f131-4de6-9202-17a16dbd9c20",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
