@@ -1,0 +1,101 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Here we provide a detailed overview of how to use BlogPost API.",
+    "title": "BlogPost API",
+    "contact": {
+      "name": "Matteo Baiguini",
+      "email": "bygui86@github.com"
+    },
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "paths": {
+    "/blogPosts": {
+      "get": {
+        "description": "Return all blog posts in memory",
+        "tags": [
+          "blogPosts"
+        ],
+        "summary": "Get all blog posts",
+        "operationId": "getBlogPosts",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/blogPostsRes"
+          }
+        }
+      }
+    },
+    "/blogPosts/{id}": {
+      "get": {
+        "description": "If a blog posts with specified ID exists, it will be returned else nothing will be returned.",
+        "tags": [
+          "blogPosts"
+        ],
+        "summary": "Get a specific blog post given the ID",
+        "operationId": "getBlogPostByPath",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id of the blog post",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/blogPostRes"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "blogPost": {
+      "description": "BlogPost\n{\n\"id\": \"1\",\n\"title\": \"sample title\",\n\"body\":  \"sample body\",\n}",
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "string",
+          "x-go-name": "Body"
+        },
+        "id": {
+          "type": "string",
+          "x-go-name": "ID"
+        },
+        "title": {
+          "type": "string",
+          "x-go-name": "Title"
+        }
+      },
+      "x-go-package": "github.com/bygui86/go-swagger/go-swagger-rest-api/blogpost"
+    }
+  },
+  "responses": {
+    "blogPostRes": {
+      "description": "BlogPost response payload",
+      "schema": {
+        "$ref": "#/definitions/blogPost"
+      }
+    },
+    "blogPostsRes": {
+      "description": "BlogPosts response payload",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/blogPost"
+        }
+      }
+    }
+  }
+}
